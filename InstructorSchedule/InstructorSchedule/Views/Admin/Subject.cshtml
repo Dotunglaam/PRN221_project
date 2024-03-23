@@ -1,0 +1,45 @@
+﻿@model List<InstructorSchedule.Models.Entities.Subject>;
+@{
+    var PageCount = Int32.Parse(ViewData["TotalPage"].ToString());
+    Layout = "_Admin";
+    ViewData["Title"] = "Course Management";
+}
+
+<h1>@ViewData["Title"]</h1>
+<button type="button" class="btn btn-success">
+    <a asp-action="Create" asp-controller="Admin" style="color: #fff">Create Subject</a>
+    </button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Code</th>
+            <th scope="col">Description</th>
+            <th scope="col">DateCreate</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sub in Model)
+        {
+            <tr class="table-warning">
+                <td>@sub.Name</td>
+                <td>@sub.Code</td>
+                <td>@sub.Description</td>
+                <td>@sub.DateCreate</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+
+        @for (var i = 1; i <= PageCount; i++)
+        {
+            <li class="page-item"><a class="page-link" asp-action="Subject" asp-controller="Admin" asp-rout-pageNumber="@i">@i</a></li>
+        }
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+
+    </ul>
+</nav>

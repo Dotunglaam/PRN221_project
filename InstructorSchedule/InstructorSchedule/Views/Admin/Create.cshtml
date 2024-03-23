@@ -1,0 +1,29 @@
+﻿@model InstructorSchedule.Models.ViewModel.SubjectCM
+@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Course Management";
+}
+
+<h1>@ViewData["Title"]</h1>
+<button type="button" class="btn btn-success">
+    <a asp-action="Create" asp-controller="Admin">Create Subject</a>
+</button>
+
+<form asp-action="Subject" asp-controller="Admin" method="POST">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name"  type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Code" class="form-label">Code</label>
+        <input asp-for="Code" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Description</label>
+        <input asp-for="Description" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

@@ -1,0 +1,58 @@
+﻿@model List<InstructorSchedule.Models.Entities.Event>;
+@{
+    var PageCount = Int32.Parse(ViewData["TotalPage"].ToString());
+    Layout = "_Admin";
+    ViewData["Title"] = "Schedule Management";
+}
+
+
+<h1>@ViewData["Title"]</h1>
+
+</hr>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Start</th>
+            <th scope="col">End</th>
+            <th scope="col">SubjectCode</th>
+            <th scope="col">SubjectName</th>
+            <th scope="col">Instructor</th>
+            <th scope="col">Aprroval</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var _event in Model)
+        {
+            <tr class="table-danger">
+                <td>@_event.Name</td>
+                <td>@_event.Description</td>
+                <td>@_event.Start</td>
+                <td>@_event.End</td>
+                <td>@_event.Subject.Code</td>
+                <td>@_event.Subject.Name</td>
+                <td>@_event.User.Name</td>
+                <td>
+                    <a asp-action="ApprovalSubject" asp-controller="Admin" asp-route-eventId="@_event.Id" class="btn btn-warning">
+                    Approval
+                    </a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+
+        @for (var i = 1; i <= PageCount; i++)
+        {
+            <li class="page-item"><a class="page-link" asp-action="Approval" asp-controller="Admin" asp-rout-pageNumber="@i">@i</a></li>
+        }
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+
+    </ul>
+</nav>
+
